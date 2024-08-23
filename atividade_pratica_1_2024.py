@@ -43,6 +43,9 @@ def classify_color_perm(perm):
     else:
         return 'red'
 
+
+plt.figure(figsize=(30, 18)) # ajuste do tamanho das figuras
+
 # Plotar histograma de Porosity
 counts, bins, patches = plt.hist(dataset['Porosity'], bins=10, edgecolor='black')
 plt.xlabel('Porosity')
@@ -121,13 +124,6 @@ plt.ylabel('Perm')
 plt.title('Diagrama de Dispersão entre Porosity e Perm')
 plt.show()
 
-# Plotar o diagrama de dispersão entre 'Porosity' e 'log_Perm'
-plt.scatter(dataset['Porosity'], log_perm)
-plt.xlabel('Porosity')
-plt.ylabel('Log_Perm')
-plt.title('Diagrama de Dispersão entre Porosity e Log_Perm')
-plt.show()
-
 # Calcular o logaritmo de 'Perm'
 dataset['log_Perm'] = np.log(dataset['Perm'])
 
@@ -144,9 +140,13 @@ y_pred = intercept + slope * X
 # Calcular o coeficiente de determinação (R²)
 r2 = r_value**2
 
+
 # Plotar o diagrama de dispersão entre 'Porosity' e 'log_Perm'
-plt.scatter(X, y, label='Dados')
-plt.plot(X, y_pred, color='red', label='Regressão Linear')
+for label in [0, 1]:
+    mask = (dataset['Facies'] == label)
+    plt.scatter(X[mask], y[mask], label=f'Dados {label}', marker='o' if label == 1 else '^', facecolors='none', edgecolor='red' if label == 1 else 'blue')
+ 
+plt.plot(X, y_pred, color='green', label='Regressão Linear')
 plt.xlabel('Porosity')
 plt.ylabel('Log_Perm')
 plt.title(f'Diagrama de Dispersão entre Porosity e Log_Perm\nCoeficiente de Determinação (R²): {r2:.2f}')
