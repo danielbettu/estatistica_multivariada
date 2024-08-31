@@ -185,6 +185,9 @@ plt.contourf(xi, yi, zi, levels=14, cmap='coolwarm')
 # Adicionar uma barra de cores
 plt.colorbar()
 
+# Adicionar os pontos originais
+plt.scatter(x, y, c=z, edgecolors='k', cmap='coolwarm')
+
 # Adicionar rótulos e título
 plt.xlabel('EW(X5)')
 plt.ylabel('NS(X4)')
@@ -211,6 +214,9 @@ plt.contourf(xi, yi, zi, levels=14, cmap='coolwarm')
 
 # Adicionar uma barra de cores
 plt.colorbar()
+
+# Adicionar os pontos originais
+plt.scatter(x, y, c=z, edgecolors='k', cmap='coolwarm')
 
 # Adicionar rótulos e título
 plt.xlabel('EW(X5)')
@@ -239,6 +245,9 @@ plt.contourf(xi, yi, zi, levels=14, cmap='coolwarm')
 # Adicionar uma barra de cores
 plt.colorbar()
 
+# Adicionar os pontos originais
+plt.scatter(x, y, c=z, edgecolors='k', cmap='coolwarm')
+
 # Adicionar rótulos e título
 plt.xlabel('EW(X5)')
 plt.ylabel('NS(X4)')
@@ -266,6 +275,9 @@ plt.contourf(xi, yi, zi, levels=14, cmap='coolwarm')
 # Adicionar uma barra de cores
 plt.colorbar()
 
+# Adicionar os pontos originais
+plt.scatter(x, y, c=z, edgecolors='k', cmap='coolwarm')
+
 # Adicionar rótulos e título
 plt.xlabel('EW(X5)')
 plt.ylabel('NS(X4)')
@@ -273,3 +285,32 @@ plt.title('Feldspato')
 
 # Mostrar o gráfico
 plt.show()
+
+# Exibir os coeficientes do modelo
+coeficientes = modelo.coef_
+
+# Gerar o relatório
+with open("relatorio_RLM_ANOVA.txt", "w") as file:
+    file.write("Resultados da Regressão Linear Múltipla e ANOVA\n")
+    file.write("=============================================\n\n")
+    
+    file.write("Coeficientes do Modelo:\n")
+    file.write(f"Intercepto: {intercepto}\n")
+    file.write(f"Coeficientes: {coeficientes}\n\n")
+    
+    file.write("Avaliação do Modelo:\n")
+    file.write(f"Erro Quadrático Médio (MSE): {mse}\n")
+    file.write(f"Coeficiente de Determinação (R²): {r2_total}\n\n")
+    
+    file.write("Matriz de Correlação de Pearson:\n")
+    file.write(f"{correlation_matrix}\n\n")
+    
+    file.write("Resultados da ANOVA:\n")
+    file.write(f"{anova_table}\n\n")
+    
+    file.write("Contribuições das Variáveis:\n")
+    file.write(f"Contribuição de Cor: {contrib_Cor}\n")
+    file.write(f"Contribuição de NS: {contrib_NS}\n")
+    file.write(f"Contribuição de Quartzo: {contrib_Quartzo}\n")
+    file.write(f"Contribuição de Feldspato: {contrib_Feldspato}\n")
+    file.write(f"Contribuição de EW: {contrib_EW}\n")
